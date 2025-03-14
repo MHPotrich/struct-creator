@@ -1,6 +1,7 @@
 #include <iostream>
 #include <jsoncpp/json/json.h>
 #include <fstream>
+#include "builder.h"
 
 char* get_param_value(int argc, char* argv[], std::string param_name, std::string param_compact_name)
 {
@@ -40,7 +41,7 @@ int main(int argc, char* argv[])
 
 	Json::Value template_content = get_template_content(template_path);
 
-	std::cout << template_content;
+	builder::build(template_content);
 
 	return 0;
 }
