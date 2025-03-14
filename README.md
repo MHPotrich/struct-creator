@@ -25,3 +25,42 @@ g++ -o creator main.cpp -ljsoncpp
 
 - jsoncpp: `$ apt install libjsoncpp-dev`
 
+## Template
+
+- `file-content`
+This object contains another objects that represents the content of file. These children objects must have the path to file where the content will get copied, the id to be referenced in the sctruture object and a object tags that list the reserved names that will get replaced in building process.
+
+- `structure`
+Object that represents the folder structure. every object inside the structure object that has your value as a array will be considered a folder and the object with a string as your value will be considered file.
+
+Ps: an object with string as content must be file-content id, if the file-content was not found, it will be used the object value as the file content.
+
+example:
+```
+{
+	"file-content": [
+		{
+			"path": "./text.txt",
+			"id": "content-text-1",
+			"tags": ["price", "displayName"]
+		}
+	],
+	"structure": {
+		"folder-root": [
+			{
+				"children-folder": [
+					{
+						"file-2.txt": "content-text-1"
+					},
+					{
+						"file-3.txt": "content-text-1"
+					}
+				]
+			},
+			{
+				"file-1.txt": "content-text-1"
+			}
+		]
+	}
+}
+```
