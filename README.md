@@ -8,8 +8,11 @@ A tool focused on create folder and file structure in a way that it is simple an
 - [ ] default content must tags where will get replaced with content give by the user when build the structure.
 
 ## Usage
+
+- `--template-path` or `--tp`: to reference the template file path.
+
 ```
-$ struct-creator ./template.json
+$ struct-creator --template-path ./template.json
 ```
 
 ## Compilation
