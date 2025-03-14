@@ -20,3 +20,8 @@ $ struct-creator --template-path ./template.json
 ```
 g++ -o creator main.cpp -ljsoncpp
 ```
+
+### Requirements
+
+- jsoncpp: `$ apt install libjsoncpp-dev`
+
