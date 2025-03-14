@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 {
 	if(!argc >= 1) 
 	{
-		throw std::invalid_argument("Invalid argument!");
+		throw printf("Invalid argument!");
 		return 0;
 	};
 
@@ -34,7 +34,8 @@ int main(int argc, char* argv[])
 	
 	if(strlen(template_path) == 0)
 	{
-		throw std::invalid_argument("Invalid argument!");
+		throw printf("Invalid argument!");
+		return 0;
 	}
 
 	Json::Value template_content = get_template_content(template_path);
