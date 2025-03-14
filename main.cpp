@@ -12,6 +12,16 @@ char* get_param_value(int argc, char* argv[], std::string param_name, std::strin
 	return new char;
 }
 
+Json::Value get_template_content(char* template_path)
+{
+	std::ifstream template_file(template_path, std::ifstream::binary);
+	Json::Value template_content;
+
+	template_file >> template_content;
+
+	return template_content;
+}
+
 int main(int argc, char* argv[])
 {
 	if(!argc >= 1) 
@@ -27,10 +37,7 @@ int main(int argc, char* argv[])
 		throw std::invalid_argument("Invalid argument!");
 	}
 
-	std::ifstream template_file(template_path, std::ifstream::binary);
-	Json::Value template_content;
-
-	template_file >> template_content;
+	Json::Value template_content = get_template_content(template_path);
 
 	std::cout << template_content;
 
