@@ -5,7 +5,7 @@ A tool focused on create folder and file structure in a way that it is simple an
 - [x] read a json file with the structure the tool needs to follow.
 - [x] make possible to set a default content for files.
 - [ ] give the option to compress the structure in a zip file.
-- [ ] default content must tags where will get replaced with content give by the user when build the structure.
+- [x] default content must tags where will get replaced with content give by the user when build the structure.
 
 ## Usage
 
@@ -18,7 +18,7 @@ $ struct-creator --template-path ./template.json
 ## Compilation
 
 ```
-g++ -o creator main.cpp -ljsoncpp
+g++ -o creator builder.cpp main.cpp -ljsoncpp
 ```
 
 ### Requirements
