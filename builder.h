@@ -47,10 +47,10 @@ public:
 };
 	
 void read_file_content(Json::Value file_content_row);
-void create_folder(std::string* path);
+void create_folder(std::string path);
 void create_file(std::string path, std::string content);
-void create_folder_content(std::string* path, Json::Value current_object, Json::Value current_object_key);
-void build_structure(std::string* structure_path, Json::Value parent_object);
+void create_folder_content(std::string path, Json::Value current_object, Json::Value current_object_key);
+void build_structure(std::string structure_path, Json::Value parent_object);
 void build(Json::Value template_content);
 
 #endif /* BUILDER_H */

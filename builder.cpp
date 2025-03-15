@@ -13,10 +13,10 @@ void read_file_content(Json::Value file_content_row)
 	}	
 }
 
-void create_folder(std::string* path)
+void create_folder(std::string path)
 {
-	std::cout << "creating folder in: " << *path << std::endl;
-	std::filesystem::create_directories(*path);
+	std::cout << "creating folder in: " << path << std::endl;
+	std::filesystem::create_directories(path);
 }
 
 void create_file(std::string path, std::string content)
@@ -27,26 +27,26 @@ void create_file(std::string path, std::string content)
 	outfile.close();
 }
 
-void create_folder_content(std::string* path, Json::Value current_object, Json::Value current_object_key)
+void create_folder_content(std::string path, Json::Value current_object, Json::Value current_object_key)
 {
 	// file
 	if (current_object.isString())
 	{
-		std::string temp_path_file = *path + "/" + current_object_key.asString();
+		std::string temp_path_file = path + "/" + current_object_key.asString();
 		create_file(temp_path_file, current_object.asString());
 	}
 	// folder
 	else if (current_object.isObject())
 	{
-		*path = *path + "/" + current_object_key.asString();
-		create_folder(path);
-		build_structure(path, current_object);
+		std::string temp_path_file = path + "/" + current_object_key.asString();
+		create_folder(temp_path_file);
+		build_structure(temp_path_file, current_object);
 	}
 }
 
-void build_structure(std::string* structure_path, Json::Value parent_object)
+void build_structure(std::string structure_path, Json::Value parent_object)
 {
-	std::string* new_path = structure_path;
+	std::string new_path = structure_path;
 
 	for(const auto& object_child : parent_object.getMemberNames())
 	{
@@ -60,5 +60,5 @@ void build(Json::Value template_content)
 {
 	std::string root_folder = std::string(".");
 	read_file_content(template_content["file-content"]);
-	build_structure(&root_folder, template_content["structure"]);
+	build_structure(root_folder, template_content["structure"]);
 }
