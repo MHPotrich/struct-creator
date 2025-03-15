@@ -11,7 +11,7 @@ std::vector<File_Content *> read_file_content(Json::Value file_content_row)
 	
 	for (const auto& item : file_content_row)
 	{
-		File_Content* file_content = new File_Content(item["id"].asString(), item["path"].asString());
+		File_Content* file_content = new File_Content(item["id"].asString(), item["path"].asString(), item["tags"]);
 
 		all_file_content.push_back(file_content);
 		std::cout << "file content loaded successful: " << file_content->loaded_successful << std::endl;

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 #ifndef BUILDER_H
 #define BUILDER_H
@@ -14,7 +15,24 @@ private:
 
 	void update_dynamic_tags()
 	{
-		// todo: replace tags to values asked to the user through runtime.		
+		if (this->tags.empty()) return;
+
+		for(int i = 0; i < this->tags.size(); i++)
+		{
+			std::string tag_value;
+			std::string tag_target = "<<" + tags[i] + ">>";
+			
+			std::cout << tag_target << " tag value: ";
+			std::cin >> tag_value;
+
+			size_t tag_position = this->content.find(tag_target);
+
+			while(tag_position != std::string::npos)
+			{
+				this->content.replace(tag_position, tag_target.size(), tag_value);
+				tag_position = this->content.find(tag_target, tag_position + tag_value.size());
+			}
+		}		
 	}
 
 	bool load_content()
@@ -43,11 +61,18 @@ private:
 public:
 	bool loaded_successful = false;
 	std::string content;
+	std::vector<std::string> tags;
 
-	File_Content(std::string id, std::string file_path)
+	File_Content(std::string id, std::string file_path, Json::Value tags)
 	{
 		this->id = id;
 		this->path = file_path;
+
+		for(const auto& tag : tags)
+		{
+			this->tags.push_back(tag.asString());
+		}
+
 		this->loaded_successful = load_content();
 	}
 
