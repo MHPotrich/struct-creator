@@ -27,10 +27,10 @@ g++ -o creator builder.cpp main.cpp -ljsoncpp
 
 ## Template
 
-- `file-content`
+- `file-content`(required):
 This object contains another objects that represents the content of file. These children objects must have the path to file where the content will get copied, the id to be referenced in the sctruture object and a object tags that list the reserved names that will get replaced in building process.
 
-- `structure`
+- `structure`(required):
 Object that represents the folder structure. every object inside the structure object that has your value as a array will be considered a folder and the object with a string as your value will be considered file.
 
 Ps: an object with string as content must be file-content id, if the file-content was not found, it will be used the object value as the file content.
