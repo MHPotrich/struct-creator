@@ -42,25 +42,20 @@ example:
 		{
 			"path": "./text.txt",
 			"id": "content-text-1",
-			"tags": ["price", "displayName"]
+			"tags": [
+				"price",
+				"displayName"
+			]
 		}
 	],
 	"structure": {
-		"folder-root": [
-			{
-				"children-folder": [
-					{
-						"file-2.txt": "content-text-1"
-					},
-					{
-						"file-3.txt": "content-text-1"
-					}
-				]
+		"folder-root": {
+			"children-folder": {
+				"file-2.txt": "content-text-1",
+				"file-3.txt": "content-text-1"
 			},
-			{
-				"file-1.txt": "content-text-1"
-			}
-		]
+			"file-1.txt": "content-text-1"
+		}
 	}
 }
 ```
