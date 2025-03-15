@@ -35,8 +35,8 @@ Object that represents the folder structure. every object inside the structure o
 
 Ps: an object with string as content must be file-content id, if the file-content was not found, it will be used the object value as the file content.
 
-example:
-```
+template example:
+```json
 {
 	"file-content": [
 		{
