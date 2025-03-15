@@ -29,16 +29,16 @@ void create_file(std::string path, std::string content)
 
 void create_folder_content(std::string path, Json::Value current_object, Json::Value current_object_key)
 {
+	std::string temp_path_file = path + "/" + current_object_key.asString();
+
 	// file
 	if (current_object.isString())
 	{
-		std::string temp_path_file = path + "/" + current_object_key.asString();
 		create_file(temp_path_file, current_object.asString());
 	}
 	// folder
 	else if (current_object.isObject())
 	{
-		std::string temp_path_file = path + "/" + current_object_key.asString();
 		create_folder(temp_path_file);
 		build_structure(temp_path_file, current_object);
 	}
