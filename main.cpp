@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 
 	Json::Value template_content = get_template_content(template_path);
 
-	builder::build(template_content);
+	build(template_content);
 
 	return 0;
 }
