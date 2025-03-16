@@ -63,7 +63,7 @@ template example:
 }
 ```
 file-content example:
-```
+```html
 <div>
 	<h1><<displayName>></h1>
 	<h3>$ <<price>></h3>
