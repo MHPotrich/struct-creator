@@ -6,6 +6,7 @@ A tool focused on create folder and file structure in a way that it is simple an
 - [x] make possible to set a default content for files.
 - [ ] give the option to compress the structure in a zip file.
 - [x] default content must tags where will get replaced with content give by the user when build the structure.
+- [ ] make possible to define a folder name with a tag
 
 ## Usage
 
@@ -35,6 +36,8 @@ Object that represents the folder structure. every object inside the structure o
 
 Ps: an object with string as content must be file-content id, if the file-content was not found, it will be used the object value as the file content.
 
+tags are indentified inside file rounded by `<<` and `>>`.
+
 template example:
 ```json
 {
@@ -58,4 +61,11 @@ template example:
 		}
 	}
 }
+```
+file-content example:
+```
+<div>
+	<h1><<displayName>></h1>
+	<h3>$ <<price>></h3>
+</div>
 ```
