@@ -32,6 +32,7 @@ int main(int argc, char* argv[])
 	};
 
 	char* template_path = get_param_value(argc, argv, "--template-path", "-tp");
+	char* destination_path = get_param_value(argc, argv, "--destination-path", "-dp");
 	
 	if(strlen(template_path) == 0)
 	{
@@ -41,7 +42,7 @@ int main(int argc, char* argv[])
 
 	Json::Value template_content = get_template_content(template_path);
 
-	build(template_content);
+	build(template_content, destination_path);
 
 	return 0;
 }

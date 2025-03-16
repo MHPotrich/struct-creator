@@ -88,6 +88,6 @@ std::string check_file_content_id(std::string id, std::vector<File_Content *> al
 void create_file(std::string path, std::string content, std::vector<File_Content *> all_file_content);
 void create_folder_content(std::string path, Json::Value current_object, Json::Value current_object_key, std::vector<File_Content *> all_file_content);
 void build_structure(std::string structure_path, Json::Value parent_object, std::vector<File_Content *> all_file_content);
-void build(Json::Value template_content);
+void build(Json::Value template_content, char* destination_path);
 
 #endif /* BUILDER_H */

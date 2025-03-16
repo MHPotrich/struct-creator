@@ -73,9 +73,13 @@ void build_structure(std::string structure_path, Json::Value parent_object, std:
 	//free(new_path);
 }
 
-void build(Json::Value template_content)
+void build(Json::Value template_content, char* destination_path)
 {
-	std::string root_folder = std::string(".");
+	std::string destination_path_string = std::string(destination_path);
+
+	if(destination_path_string.empty()) destination_path_string = "."; 
+
+	std::string root_folder = std::string(destination_path_string);
 	std::vector<File_Content *> all_file_content;
 
 	all_file_content = read_file_content(template_content["file-content"]);
