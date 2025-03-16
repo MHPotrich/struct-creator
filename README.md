@@ -41,13 +41,25 @@ tags are indentified inside file rounded by `<<` and `>>`.
 template example:
 ```json
 {
+    "folder-tags": [
+        {
+            "id": "folder-id",
+            "value": "folder-id-value"
+        }
+    ],
 	"file-content": [
 		{
 			"path": "./text.txt",
 			"id": "content-text-1",
 			"tags": [
-				"price",
-				"displayName"
+				{
+                    "id": "price",
+                    "value": "7.00"
+                },
+                {
+                    "id": "displayName",
+                    "value": "Book"
+                }
 			]
 		}
 	],
