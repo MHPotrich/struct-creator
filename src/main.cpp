@@ -43,8 +43,5 @@ int main(int argc, char* argv[])
 
 	build(template_content, destination_path);
 
-	delete template_path;
-	delete destination_path;
-
 	return 0;
 }

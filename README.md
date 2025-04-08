@@ -6,11 +6,12 @@ A tool focused on create folder and file structure in a way that it is simple an
 - [x] make possible to set a default content for files.
 - [ ] give the option to compress the structure in a zip file.
 - [x] default content must tags where will get replaced with content give by the user when build the structure.
-- [ ] make possible to define a folder name with a tag
+- [x] make possible to define a folder name with a tag
 
 ## Usage
 
-- `--template-path` or `--tp`: to reference the template file path.
+- `--template-path` or `-tp`: to reference the template file path.
+- `--destination-path` or `-dp`: to reference the path to create the structure.
 
 ```
 $ struct-creator --template-path ./template.json
