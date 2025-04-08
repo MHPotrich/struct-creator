@@ -19,7 +19,7 @@ $ struct-creator --template-path ./template.json
 ## Compilation
 
 ```
-g++ -o creator builder.cpp main.cpp -ljsoncpp
+g++ -o creator ./src/builder.cpp ./src/main.cpp -ljsoncpp
 ```
 
 ### Requirements
@@ -53,13 +53,13 @@ template example:
 			"id": "content-text-1",
 			"tags": [
 				{
-                    "id": "price",
-                    "value": "7.00"
-                },
-                {
-                    "id": "displayName",
-                    "value": "Book"
-                }
+					"id": "price",
+					"value": "7.00"
+				},
+				{
+					"id": "displayName",
+					"value": "Book"
+				}
 			]
 		}
 	],
