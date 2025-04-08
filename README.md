@@ -70,12 +70,15 @@ template example:
 				"file-2.txt": "content-text-1",
 				"file-3.txt": "content-text-1"
 			},
+			"<<folder-id>>": {
+				"file-4.txt": "content-text-1"
+			},
 			"file-1.txt": "content-text-1"
 		}
 	}
 }
 ```
-file-content example:
+file-content file example:
 ```html
 <div>
 	<h1><<displayName>></h1>
