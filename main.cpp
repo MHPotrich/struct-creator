@@ -1,4 +1,3 @@
-#include <iostream>
 #include <jsoncpp/json/json.h>
 #include <fstream>
 #include "builder.h"
@@ -25,7 +24,7 @@ Json::Value get_template_content(char* template_path)
 
 int main(int argc, char* argv[])
 {
-	if(!argc >= 1) 
+	if(!(argc > 0)) 
 	{
 		throw printf("Invalid argument!");
 		return 0;
@@ -43,6 +42,9 @@ int main(int argc, char* argv[])
 	Json::Value template_content = get_template_content(template_path);
 
 	build(template_content, destination_path);
+
+	delete template_path;
+	delete destination_path;
 
 	return 0;
 }

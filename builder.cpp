@@ -69,8 +69,6 @@ void build_structure(std::string structure_path, Json::Value parent_object, std:
 	{
 		create_folder_content(new_path, parent_object[object_child], object_child, all_file_content);
 	}
-
-	//free(new_path);
 }
 
 void build(Json::Value template_content, char* destination_path)
