@@ -1,4 +1,4 @@
-# struct-creator
+# Struct Creator
 A tool focused on create folder and file structure in a way that it is simple and easy to replicate.
 
 ## Todo list
