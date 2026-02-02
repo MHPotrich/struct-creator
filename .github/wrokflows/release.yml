@@ -1,0 +1,100 @@
+name: release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create build directory
+        run: mkdir build
+
+      - name: Install dependencies
+        run: sudo apt-get update | sudo apt install libjsoncpp-dev
+
+      - name: Compile
+        run: g++ -o .build/creator.o ./src/builder.cpp ./src/main.cpp -ljsoncpp
+
+      - name: Upload compiled file
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-compiled
+          path: ./build/creator.o
+          retention-days: 1
+
+  create-asset:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create build directory
+        run: mkdir build
+
+      - name: Download compiled file
+        uses: actions/download-artifact@v4
+        with:
+          name: build-compiled
+          path: ./build
+
+      - name: Install dependencies
+        run: sudo apt-get update | sudo apt install zip
+
+      - name: create zip file
+        run: zip ./build/creator.zip ./build/creator.o
+
+      - name: Upload zip file
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-final
+          path: ./build/creator.zip
+          retention-days: 1
+
+  publish-release:
+    runs-on: ubuntu-latest
+    needs: [build, create-asset]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create build directory
+        run: mkdir build
+
+      - name: Download zip file
+        uses: actions/download-artifact@v4
+        with:
+          name: release-final
+          path: ./build
+
+      - name: Create release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./build/creator.zip
+          asset_name: creator.zip
+          asset_content_type: application/zip
