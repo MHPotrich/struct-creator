@@ -20,7 +20,7 @@ jobs:
         run: sudo apt-get update | sudo apt install clang llvm libjsoncpp-dev
 
       - name: Compile
-        run: clang++ ./src/builder.cpp .src/folder-tag.h ./src/main.cpp -o .build/creator.o -ljsoncpp
+        run: clang++ -o .build/creator.o ./src/builder.cpp .src/folder-tag.h ./src/main.cpp -ljsoncpp
 
       - name: Upload compiled file
         uses: actions/upload-artifact@v4
