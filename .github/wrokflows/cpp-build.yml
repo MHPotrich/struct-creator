@@ -1,0 +1,30 @@
+name: cpp-build
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create build directory
+        run: mkdir build
+
+      - name: Install dependencies
+        run: sudo apt-get update | sudo apt install libjsoncpp-dev
+
+      - name: Compile
+        run: g++ -o .build/creator.o ./src/builder.cpp ./src/main.cpp -ljsoncpp
+
+      - name: Upload compiled file
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-compiled
+          path: ./build/creator.o
+          retention-days: 1
