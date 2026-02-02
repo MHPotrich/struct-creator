@@ -6,12 +6,13 @@ on:
       - main
       - dev
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
 
     steps:
       - uses: actions/checkout@v4
@@ -23,7 +24,7 @@ jobs:
         run: sudo apt-get update | sudo apt install libjsoncpp-dev
 
       - name: Compile
-        run: g++ -o .build/creator.o ./src/builder.cpp ./src/main.cpp -ljsoncpp
+        run: g++ ./src/builder.cpp .src/folder-tag.h ./src/main.cpp -o .build/creator.o -ljsoncpp
 
       - name: Upload compiled file
         uses: actions/upload-artifact@v4
