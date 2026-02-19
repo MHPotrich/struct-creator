@@ -41,8 +41,14 @@ jobs:
       - name: Install dependencies
         run: brew install llvm jsoncpp pkgconf
 
+      - name: Set brew include path
+        run: export CPATH="$(brew --prefix)/include"
+
+      - name: Set brew lib path
+        run: export LIBRARY_PATH="$(brew --prefix)/lib"
+
       - name: Compile
-        run: export CPATH="$(brew --prefix)/include" export LIBRARY_PATH="$(brew --prefix)/lib" g++ ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp -o ./build/creator.o $(pkg-config jsoncpp --cflags --libs)
+        run: g++ ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp -o ./build/creator.o $(pkg-config jsoncpp --cflags --libs)
 
       - name: Upload compiled file
         uses: actions/upload-artifact@v4
