@@ -48,7 +48,7 @@ jobs:
         run: export LIBRARY_PATH="$(brew --prefix)/lib"
 
       - name: Compile
-        run: g++ ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp -o ./build/creator.o $(pkg-config jsoncpp --cflags --libs)
+        run: g++ ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp -o ./build/creator.o `pkg-config jsoncpp --cflags --libs`
 
       - name: Upload compiled file
         uses: actions/upload-artifact@v4
