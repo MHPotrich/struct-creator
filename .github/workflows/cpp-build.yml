@@ -39,7 +39,7 @@ jobs:
         run: mkdir ./build
 
       - name: Install dependencies
-        run: brew install llvm libjsoncpp-dev
+        run: brew install llvm libjson-rpc-cpp
 
       - name: Compile
         run: clang++ -o ./build/creator.o ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp -ljsoncpp
