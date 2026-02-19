@@ -7,7 +7,7 @@ on:
       - dev
 
 jobs:
-  build:
+  build-x86:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,6 +25,28 @@ jobs:
       - name: Upload compiled file
         uses: actions/upload-artifact@v4
         with:
-          name: build-compiled
+          name: build-compiled-x86
+          path: ./build/creator.o
+          retention-days: 1
+
+  build-apple-silicon:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create build directory
+        run: mkdir ./build
+
+      - name: Install dependencies
+        run: brew install clang llvm libjsoncpp-dev
+
+      - name: Compile
+        run: clang++ -o ./build/creator.o ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp -ljsoncpp
+
+      - name: Upload compiled file
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-compiled-apple-silicon
           path: ./build/creator.o
           retention-days: 1
