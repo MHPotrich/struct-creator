@@ -39,7 +39,7 @@ jobs:
         run: mkdir ./build
 
       - name: Install dependencies
-        run: brew install llvm jsoncpp pkg-conf
+        run: brew install llvm jsoncpp
 
       - name: Compile
         run: export CPATH="$(brew --prefix)/include" && export LIBRARY_PATH="$(brew --prefix)/lib" && g++ ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp -o ./build/creator.o `pkgconfig jsoncpp --cflags --libs`
