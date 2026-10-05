@@ -42,7 +42,7 @@ jobs:
         run: brew install jsoncpp
 
       - name: Compile
-        run: export CPATH="$(brew --prefix jsoncpp)/include" && export LIBRARY_PATH="$(brew --prefix jsoncpp)/lib" && clang++ -std=c++17 -stdlib=libc++ -O2 -Wall -Wextra -I$(brew --prefix jsoncpp)/include -L$(brew --prefix jsoncpp)/lib -ljsoncpp -o ./build/creator.o ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp
+        run: JSONCPP_PREFIX=$(brew --prefix libjsoncpp) clang++ -std=c++17 -stdlib=libc++ -O2 -Wall -Wextra -I"${JSONCPP_PREFIX}/include" -L"${JSONCPP_PREFIX}/lib" -ljsoncpp -o ./build/creator.o ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp
 
       - name: Upload compiled file
         uses: actions/upload-artifact@v4
