@@ -39,10 +39,10 @@ jobs:
         run: mkdir ./build
 
       - name: Install dependencies
-        run: brew install llvm jsoncpp
+        run: brew install jsoncpp
 
       - name: Compile
-        run: export CPATH="$(brew --prefix)/include" && export LIBRARY_PATH="$(brew --prefix)/lib" && g++ ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp -o ./build/creator.o `pkg-config jsoncpp --cflags --libs`
+        run: export CPATH="$(brew --prefix jsoncpp)/include" && export LIBRARY_PATH="$(brew --prefix jsoncpp)/lib" && clang++ -std=c++17 -stdlib=libc++ -O2 -Wall -Wextra -I$(brew --prefix jsoncpp)/include -L$(brew --prefix jsoncpp)/lib -ljsoncpp -o ./build/creator.o ./src/builder.cpp ./src/folder_tag.cpp ./src/main.cpp
 
       - name: Upload compiled file
         uses: actions/upload-artifact@v4
